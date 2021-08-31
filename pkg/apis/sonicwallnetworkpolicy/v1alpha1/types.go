@@ -38,28 +38,37 @@ type SonicwallNetworkPolicyList struct {
 	Items []SonicwallNetworkPolicy `json:"items"`
 }
 
-type SonicwallNetworkPolicySpec struct {
-	Ingress []SonicwallNetworkPolicyIngressItem `json:"ingress"`
-	Egress  []SonicwallNetworkPolicyEgressItem  `json:"egress"`
+type SonicwallNetworkPolicySpec []SonicwallNetworkPolicySpecItem
+
+type SonicwallNetworkPolicySpecItem struct {
+	EndpointSelector SonicwallNetworkPolicyEndpointSelector `json:"endpointSelector"`
+	Ingress          []SonicwallNetworkPolicyIngressItem    `json:"ingress,omitempty"`
+	Egress           []SonicwallNetworkPolicyEgressItem     `json:"egress,omitempty"`
+}
+
+type SonicwallNetworkPolicyEndpointSelector struct {
+	MatchLabels map[string]string `json:"matchLabels,omitempty"`
 }
 
 type SonicwallNetworkPolicyIngressItem struct {
-	FromCIDR  []string                      `json:"fromCIDR"`
-	FromFQDN  []string                      `json:"fromFQDN"`
-	FromPorts []SonicwallNetworkPolicyPorts `json:"fromPorts"`
+	FromEndpoints []SonicwallNetworkPolicyEndpointSelector `json:"fromEndpoints,omitempty"`
+	FromCIDR      []string                                 `json:"fromCIDR,omitempty"`
+	FromFQDN      []string                                 `json:"fromFQDN,omitempty"`
+	FromPorts     []SonicwallNetworkPolicyPorts            `json:"fromPorts,omitempty"`
 }
 
 type SonicwallNetworkPolicyEgressItem struct {
-	ToCIDR  []string                      `json:"toCIDR"`
-	ToFQDN  []string                      `json:"toFQDN"`
-	ToPorts []SonicwallNetworkPolicyPorts `json:"toPorts"`
+	ToEndpoints []SonicwallNetworkPolicyEndpointSelector `json:"toEndpoints,omitempty"`
+	ToCIDR      []string                                 `json:"toCIDR,omitempty"`
+	ToFQDN      []string                                 `json:"toFQDN,omitempty"`
+	ToPorts     []SonicwallNetworkPolicyPorts            `json:"toPorts,omitempty"`
 }
 
 type SonicwallNetworkPolicyPorts struct {
-	Ports []SonicwallNetworkPolicyPort `json:"ports"`
+	Ports []SonicwallNetworkPolicyPort `json:"ports,omitempty"`
 }
 
 type SonicwallNetworkPolicyPort struct {
-	Port     string `json:"port" validate:"numeric"`
-	Protocol string `json:"protocol" validate:"oneof=TCP UDP ALL"`
+	Port     string `json:"port,omitempty" validate:"numeric"`
+	Protocol string `json:"protocol,omitempty" validate:"oneof=TCP UDP ALL"`
 }
