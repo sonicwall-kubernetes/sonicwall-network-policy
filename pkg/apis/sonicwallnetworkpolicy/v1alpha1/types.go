@@ -42,8 +42,8 @@ type SonicwallNetworkPolicySpec []SonicwallNetworkPolicySpecItem
 
 type SonicwallNetworkPolicySpecItem struct {
 	EndpointSelector SonicwallNetworkPolicyEndpointSelector `json:"endpointSelector"`
-	Ingress          []SonicwallNetworkPolicyIngressItem    `json:"ingress,omitempty"`
-	Egress           []SonicwallNetworkPolicyEgressItem     `json:"egress,omitempty"`
+	Ingress          *[]SonicwallNetworkPolicyIngressItem    `json:"ingress,omitempty"`
+	Egress           *[]SonicwallNetworkPolicyEgressItem     `json:"egress,omitempty"`
 }
 
 type SonicwallNetworkPolicyEndpointSelector struct {
@@ -51,21 +51,21 @@ type SonicwallNetworkPolicyEndpointSelector struct {
 }
 
 type SonicwallNetworkPolicyIngressItem struct {
-	FromEndpoints []SonicwallNetworkPolicyEndpointSelector `json:"fromEndpoints,omitempty"`
-	FromCIDR      []string                                 `json:"fromCIDR,omitempty"`
-	FromFQDN      []string                                 `json:"fromFQDN,omitempty"`
-	FromPorts     []SonicwallNetworkPolicyPorts            `json:"fromPorts,omitempty"`
+	FromEndpoints *[]SonicwallNetworkPolicyEndpointSelector `json:"fromEndpoints,omitempty"`
+	FromCIDR      *[]string                                 `json:"fromCIDR,omitempty"`
+	FromFQDN      *[]string                                 `json:"fromFQDN,omitempty"`
+	FromPorts     *[]SonicwallNetworkPolicyPorts            `json:"fromPorts,omitempty"`
 }
 
 type SonicwallNetworkPolicyEgressItem struct {
-	ToEndpoints []SonicwallNetworkPolicyEndpointSelector `json:"toEndpoints,omitempty"`
-	ToCIDR      []string                                 `json:"toCIDR,omitempty"`
-	ToFQDN      []string                                 `json:"toFQDN,omitempty"`
-	ToPorts     []SonicwallNetworkPolicyPorts            `json:"toPorts,omitempty"`
+	ToEndpoints *[]SonicwallNetworkPolicyEndpointSelector `json:"toEndpoints,omitempty"`
+	ToCIDR      *[]string                                 `json:"toCIDR,omitempty"`
+	ToFQDN      *[]string                                 `json:"toFQDN,omitempty"`
+	ToPorts     *[]SonicwallNetworkPolicyPorts            `json:"toPorts,omitempty"`
 }
 
 type SonicwallNetworkPolicyPorts struct {
-	Ports []SonicwallNetworkPolicyPort `json:"ports,omitempty"`
+	Ports *[]SonicwallNetworkPolicyPort `json:"ports,omitempty"`
 }
 
 type SonicwallNetworkPolicyPort struct {

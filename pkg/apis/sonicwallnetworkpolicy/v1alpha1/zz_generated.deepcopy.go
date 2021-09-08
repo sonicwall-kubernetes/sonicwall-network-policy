@@ -62,26 +62,42 @@ func (in *SonicwallNetworkPolicyEgressItem) DeepCopyInto(out *SonicwallNetworkPo
 	*out = *in
 	if in.ToEndpoints != nil {
 		in, out := &in.ToEndpoints, &out.ToEndpoints
-		*out = make([]SonicwallNetworkPolicyEndpointSelector, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
+		*out = new([]SonicwallNetworkPolicyEndpointSelector)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]SonicwallNetworkPolicyEndpointSelector, len(*in))
+			for i := range *in {
+				(*in)[i].DeepCopyInto(&(*out)[i])
+			}
 		}
 	}
 	if in.ToCIDR != nil {
 		in, out := &in.ToCIDR, &out.ToCIDR
-		*out = make([]string, len(*in))
-		copy(*out, *in)
+		*out = new([]string)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]string, len(*in))
+			copy(*out, *in)
+		}
 	}
 	if in.ToFQDN != nil {
 		in, out := &in.ToFQDN, &out.ToFQDN
-		*out = make([]string, len(*in))
-		copy(*out, *in)
+		*out = new([]string)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]string, len(*in))
+			copy(*out, *in)
+		}
 	}
 	if in.ToPorts != nil {
 		in, out := &in.ToPorts, &out.ToPorts
-		*out = make([]SonicwallNetworkPolicyPorts, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
+		*out = new([]SonicwallNetworkPolicyPorts)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]SonicwallNetworkPolicyPorts, len(*in))
+			for i := range *in {
+				(*in)[i].DeepCopyInto(&(*out)[i])
+			}
 		}
 	}
 	return
@@ -125,26 +141,42 @@ func (in *SonicwallNetworkPolicyIngressItem) DeepCopyInto(out *SonicwallNetworkP
 	*out = *in
 	if in.FromEndpoints != nil {
 		in, out := &in.FromEndpoints, &out.FromEndpoints
-		*out = make([]SonicwallNetworkPolicyEndpointSelector, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
+		*out = new([]SonicwallNetworkPolicyEndpointSelector)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]SonicwallNetworkPolicyEndpointSelector, len(*in))
+			for i := range *in {
+				(*in)[i].DeepCopyInto(&(*out)[i])
+			}
 		}
 	}
 	if in.FromCIDR != nil {
 		in, out := &in.FromCIDR, &out.FromCIDR
-		*out = make([]string, len(*in))
-		copy(*out, *in)
+		*out = new([]string)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]string, len(*in))
+			copy(*out, *in)
+		}
 	}
 	if in.FromFQDN != nil {
 		in, out := &in.FromFQDN, &out.FromFQDN
-		*out = make([]string, len(*in))
-		copy(*out, *in)
+		*out = new([]string)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]string, len(*in))
+			copy(*out, *in)
+		}
 	}
 	if in.FromPorts != nil {
 		in, out := &in.FromPorts, &out.FromPorts
-		*out = make([]SonicwallNetworkPolicyPorts, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
+		*out = new([]SonicwallNetworkPolicyPorts)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]SonicwallNetworkPolicyPorts, len(*in))
+			for i := range *in {
+				(*in)[i].DeepCopyInto(&(*out)[i])
+			}
 		}
 	}
 	return
@@ -214,8 +246,12 @@ func (in *SonicwallNetworkPolicyPorts) DeepCopyInto(out *SonicwallNetworkPolicyP
 	*out = *in
 	if in.Ports != nil {
 		in, out := &in.Ports, &out.Ports
-		*out = make([]SonicwallNetworkPolicyPort, len(*in))
-		copy(*out, *in)
+		*out = new([]SonicwallNetworkPolicyPort)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]SonicwallNetworkPolicyPort, len(*in))
+			copy(*out, *in)
+		}
 	}
 	return
 }
@@ -258,16 +294,24 @@ func (in *SonicwallNetworkPolicySpecItem) DeepCopyInto(out *SonicwallNetworkPoli
 	in.EndpointSelector.DeepCopyInto(&out.EndpointSelector)
 	if in.Ingress != nil {
 		in, out := &in.Ingress, &out.Ingress
-		*out = make([]SonicwallNetworkPolicyIngressItem, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
+		*out = new([]SonicwallNetworkPolicyIngressItem)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]SonicwallNetworkPolicyIngressItem, len(*in))
+			for i := range *in {
+				(*in)[i].DeepCopyInto(&(*out)[i])
+			}
 		}
 	}
 	if in.Egress != nil {
 		in, out := &in.Egress, &out.Egress
-		*out = make([]SonicwallNetworkPolicyEgressItem, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
+		*out = new([]SonicwallNetworkPolicyEgressItem)
+		if **in != nil {
+			in, out := *in, *out
+			*out = make([]SonicwallNetworkPolicyEgressItem, len(*in))
+			for i := range *in {
+				(*in)[i].DeepCopyInto(&(*out)[i])
+			}
 		}
 	}
 	return
